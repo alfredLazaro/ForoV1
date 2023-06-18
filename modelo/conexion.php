@@ -9,8 +9,8 @@
             $host = 'localhost';
             $db   = 'umss';
             $user = 'postgres';
-            $pass = '12345';
-            $port = '5434';
+            $pass = '12345678';
+            $port = '5432';
         
             $dsn = "pgsql:host=$host;port=$port;dbname=$db";
         
