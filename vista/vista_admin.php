@@ -21,7 +21,7 @@
                         session_start();
                         if (isset($_SESSION['nombreUsuario'])) {
                             echo "<p><strong>Nombre: </strong>" . $_SESSION['nombreUsuario'] . "</p>";
-                            echo "<p><strong>Codigo SIS: </strong>" . $_SESSION['codigo_sis'] . "</p>";
+                            //echo "<p><strong>Codigo SIS: </strong>" . $_SESSION['codigo_sis'] . "</p>";
                         } else {
                             echo "<p>No user information found. Please log in.</p>";
                         }
@@ -84,14 +84,14 @@
 </body>
 <style>
     .custom-header {
-        font-size: 20px;
+        font-size: 25px;
         font-weight: bold;
         /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-        text-shadow: 
-            -1.3px -1.3px 0 #000,  
-            1.3px -1.3px 0 #000,
-            -1.3px 1.3px 0 #000,
-            1.3px 1.3px 0 #000;
+        /* text-shadow: 
+            -1.0px -1.0px 0 #000,  
+            1.0px -1.0px 0 #000,
+            -1.0px 1.0px 0 #000,
+            1.0px 1.0px 0 #000; */
     }
     .custom-comment {
         font-size: 20px;
