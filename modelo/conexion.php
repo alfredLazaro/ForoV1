@@ -6,6 +6,7 @@
         }
 
         private function connect() {
+            //aqui cambiar configuracion
             $host = 'localhost';
             $db   = 'umss';
             $user = 'postgres';
