@@ -38,4 +38,13 @@
             $sentenceSQL->closeCursor();
             return $respuesta;
         }
+
+        public function obtenerAdmin($user, $pass) {
+            $sql = "SELECT * FROM administradores WHERE nombre = :nombre AND contrasena = :contrasena";
+            $sentenceSQL = $this->connexion_bd->prepare($sql);
+            $sentenceSQL->execute(array(":nombre"=>$user, ":contrasena"=>$pass));
+            $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
+            $sentenceSQL->closeCursor();
+            return $respuesta[0];
+        }
     }
