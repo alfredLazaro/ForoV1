@@ -40,6 +40,7 @@
                     <!-- <strong style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Primer Comentario</strong> -->
                     <span class="custom-header">Primer Comentario</span>
                 </div>
+                
                 <!-- <div class="card-body"> -->
                 <div class="card-body bg-light text-dark">
                     <p class="custom-comment" id="firstComment"><?php echo $_SESSION['primerComentario']; ?></p>
