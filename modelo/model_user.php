@@ -47,4 +47,14 @@
             $sentenceSQL->closeCursor();
             return $respuesta[0];
         }
+
+        /* eliminar un  comentario de  */
+        public function eliminarComentario($id,$user){
+            $sql = "DELETE FROM comentarios WHERE id_comentario= :id and codigo_sis= :user";
+            $sentenceSQL = $this->conexion_bd->prepare($sql);
+            $sentenceSQL->execute(array(":id"=>$id,":user"=>$user));
+            //$respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
+            $sentenceSQL->closeCursor();
+            //return $respuesta[0];
+        }
     }
