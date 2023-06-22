@@ -70,8 +70,17 @@ class User extends Conexion {
         $sentenceSQL->closeCursor();
     }
 
+    // public function obtenerComentarios() {
+    //     $sql = "SELECT texto_contenido FROM contenido ORDER BY id_contenido";
+    //     $sentenceSQL = $this->connexion_bd->prepare($sql);
+    //     $sentenceSQL->execute();
+    //     $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
+    //     $sentenceSQL->closeCursor();
+    //     return $respuesta;
+    // }
+
     public function obtenerComentarios() {
-        $sql = "SELECT texto_contenido FROM contenido ORDER BY id_contenido";
+        $sql = "SELECT id_contenido, texto_contenido FROM contenido ORDER BY id_contenido";
         $sentenceSQL = $this->connexion_bd->prepare($sql);
         $sentenceSQL->execute();
         $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);

@@ -60,6 +60,8 @@
                     var commentId = $(this).data('id');
                     var parentCard = $(this).closest('.card');
 
+                    console.log(commentId);
+
                     $.ajax({
                         url: '../controlador/eliminarContenido.php',
                         method: 'POST',
@@ -69,7 +71,7 @@
                         success: function(response) {
                             var parsedResponse = JSON.parse(response);
                             if (parsedResponse.success) {
-                                alert('Comment deleted successfully!');
+                                alert('Se elimino el contenido');
                                 parentCard.remove();
                             } else {
                                 alert('Error deleting comment.');
