@@ -40,7 +40,19 @@
 
         echo json_encode(array('primerComentario' => $primerComentario['texto_contenido'], 'segundoComentario' => $segundoComentario['texto_contenido']));
         exit();
-    } else {
+    // codigo para la modificacion de comenarios agregado
+    } else if (isset($_POST['idComentario']) && isset($_POST['nuevoTexto'])) {
+        // Obtener el ID del comentario y el nuevo texto del formulario
+        $idComentario = $_POST['idComentario'];
+        $nuevoTexto = $_POST['nuevoTexto'];
+
+        // Llamar a la función para modificar el comentario
+        $user->modificarComentario($idComentario, $nuevoTexto);
+
+        // Redirigir a una página de éxito o mostrar un mensaje de éxito
+        header("Location: ../vista/vista_estudiante.php?exito=1");
+        exit();
+    }else {
         header("Location: ../index.php");
         exit();
     }
