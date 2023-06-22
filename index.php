@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,22 +23,23 @@
 <body>
     <main class="container">
         <form action="controlador/verificarUsuario.php" method="POST">
-        <h1>Validar Usuario</h1>
-        <div class="form-group">
-            <label for="user">Usuario</label>
-            <input type="text" name="user" class="form-control" id="user">
-        </div>
-        <div class="form-group">
-            <label for="pass">Contraseña</label>
-            <input type="password" name="pass" class="form-control" id="pass">
-        </div>
-        <div class="text-center">
-            <input type="submit" value="Ingresar" class="btn btn-primary">
-        </div>
-            
+            <h1>Validar Usuario</h1>
+            <div class="form-group">
+                <label for="user">Usuario</label>
+                <input type="text" name="user" class="form-control" id="user">
+            </div>
+            <div class="form-group">
+                <label for="pass">Contraseña</label>
+                <input type="password" name="pass" class="form-control" id="pass">
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Ingresar" class="btn btn-primary">
+            </div>
+
     </main>
 </body>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="vista/src/index.js"></script> -->
+
 </html>
