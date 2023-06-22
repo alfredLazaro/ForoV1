@@ -49,12 +49,21 @@
         }
 
         /* eliminar un  comentario de  */
-        public function eliminarComentario($id,$user){
-            $sql = "DELETE FROM comentarios WHERE id_comentario= :id and codigo_sis= :user";
-            $sentenceSQL = $this->conexion_bd->prepare($sql);
-            $sentenceSQL->execute(array(":id"=>$id,":user"=>$user));
+        public function eliminarComentario($id){
+            $sql = "DELETE FROM comentarios WHERE id_comentario= :id ";
+            $sentenceSQL = $this->connexion_bd->prepare($sql);
+            $sentenceSQL->execute(array(":id"=>$id));
             //$respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
             $sentenceSQL->closeCursor();
             //return $respuesta[0];
+        }
+
+        public function modificarComment($id,$nuevoTexto){
+            $sql = "UPDATE contenido SET texto_contenido = :nuevoTexto WHERE id_contenido = :id";
+            $sentenceSQL = $this->connexion_bd->prepare($sql);
+            $sentenceSQL->bindParam(':nuevoTexto', $nuevoTexto, PDO::PARAM_STR);
+            $sentenceSQL->bindParam(':id', $id, PDO::PARAM_INT);
+            $sentenceSQL->execute();
+            $sentenceSQL->closeCursor();
         }
     }
