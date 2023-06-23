@@ -24,24 +24,6 @@ class User extends Conexion {
         return $respuesta[0];
     }
 
-    // public function obtenerPrimerComentario() {
-    //     $sql = "SELECT texto_contenido FROM contenido ORDER BY id_contenido LIMIT 1";
-    //     $sentenceSQL = $this->connexion_bd->prepare($sql);
-    //     $sentenceSQL->execute();
-    //     $respuesta = $sentenceSQL->fetch(PDO::FETCH_ASSOC);
-    //     $sentenceSQL->closeCursor();
-    //     return $respuesta;
-    // }
-
-    // public function obtenerSegundoComentario() {
-    //     $sql = "SELECT texto_contenido FROM contenido ORDER BY id_contenido LIMIT 1 OFFSET 1";
-    //     $sentenceSQL = $this->connexion_bd->prepare($sql);
-    //     $sentenceSQL->execute();
-    //     $respuesta = $sentenceSQL->fetch(PDO::FETCH_ASSOC);
-    //     $sentenceSQL->closeCursor();
-    //     return $respuesta;
-    // }
-
     public function obtenerAdmin($user, $pass) {
         $sql = "SELECT * FROM administradores WHERE nombre = :nombre AND contrasena = :contrasena";
         $sentenceSQL = $this->connexion_bd->prepare($sql);
@@ -70,15 +52,6 @@ class User extends Conexion {
         $sentenceSQL->closeCursor();
     }
 
-    // public function obtenerComentarios() {
-    //     $sql = "SELECT texto_contenido FROM contenido ORDER BY id_contenido";
-    //     $sentenceSQL = $this->connexion_bd->prepare($sql);
-    //     $sentenceSQL->execute();
-    //     $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
-    //     $sentenceSQL->closeCursor();
-    //     return $respuesta;
-    // }
-
     public function obtenerComentarios() {
         $sql = "SELECT id_contenido, texto_contenido FROM contenido ORDER BY id_contenido";
         $sentenceSQL = $this->connexion_bd->prepare($sql);
@@ -92,6 +65,13 @@ class User extends Conexion {
         $sql = "DELETE FROM contenido WHERE id_contenido = :id";
         $stmt = $this->connexion_bd->prepare($sql);
         $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function agregarContenido($texto_contenido) {
+        $sql = "INSERT INTO contenido (texto_contenido) VALUES (:texto_contenido)";
+        $stmt = $this->connexion_bd->prepare($sql);
+        $stmt->bindParam(':texto_contenido', $texto_contenido);
         return $stmt->execute();
     }
 }
