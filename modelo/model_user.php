@@ -52,14 +52,36 @@ class User extends Conexion {
         $sentenceSQL->closeCursor();
     }
 
+    // public function obtenerComentarios() {
+    //     $sql = "SELECT id_contenido, texto_contenido FROM contenido ORDER BY id_contenido";
+    //     $sentenceSQL = $this->connexion_bd->prepare($sql);
+    //     $sentenceSQL->execute();
+    //     $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
+    //     $sentenceSQL->closeCursor();
+    //     return $respuesta;
+    // }
+
+    // public function obtenerComentarios() {
+    //     $sql = "SELECT contenido.id_contenido, contenido.texto_contenido, estudiantes.codigo_sis 
+    //             FROM contenido 
+    //             INNER JOIN estudiantes ON estudiantes.codigo_sis = contenido.codigo_sis
+    //             ORDER BY contenido.id_contenido";
+    //     $sentenceSQL = $this->connexion_bd->prepare($sql);
+    //     $sentenceSQL->execute();
+    //     $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
+    //     $sentenceSQL->closeCursor();
+    //     return $respuesta;
+    // }
+
     public function obtenerComentarios() {
-        $sql = "SELECT id_contenido, texto_contenido FROM contenido ORDER BY id_contenido";
+        $sql = "SELECT id_contenido, texto_contenido, codigo_sis FROM contenido ORDER BY id_contenido";
         $sentenceSQL = $this->connexion_bd->prepare($sql);
         $sentenceSQL->execute();
         $respuesta = $sentenceSQL->fetchAll(PDO::FETCH_ASSOC);
         $sentenceSQL->closeCursor();
         return $respuesta;
     }
+
 
     // mas logica para eliminar contenido
     public function eliminarContenido($id) {
