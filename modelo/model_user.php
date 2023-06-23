@@ -61,12 +61,14 @@ class User extends Conexion {
         return $respuesta;
     }
 
+    // mas logica para eliminar contenido
     public function eliminarContenido($id) {
         $sql = "DELETE FROM contenido WHERE id_contenido = :id";
         $stmt = $this->connexion_bd->prepare($sql);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
 
     public function agregarContenido($texto_contenido) {
         $sql = "INSERT INTO contenido (texto_contenido) VALUES (:texto_contenido)";
