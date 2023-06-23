@@ -76,6 +76,7 @@
                 var contenidoHTML = `<div class="col-md-6 offset-md-3"><div class="card bg-success text-white">
                         <div class="card-header d-flex justify-content-between">
                             <span class="custom-header">Contenido ${index + 1} </span>
+                            <button class="modificar-contenido btn btn-primary" data-id="${contenido.id_contenido}">Modificar contenido</button>
                             <button class="eleminar-contenido btn btn-danger" data-id="${contenido.id_contenido}">X</button>
                         </div>
                         <div class="card-body bg-light text-dark">
