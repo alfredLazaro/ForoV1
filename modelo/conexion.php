@@ -7,6 +7,9 @@ class Conexion {
 
     private function connect() {
         //aqui cambiar configuracion
+        //$host = '192.168.1.11'; //el alfredo/rian en su compu para mi bd
+        //$host = '192.168.1.10'; //para usar bd de alfredo
+        //$host = '192.168.1.12'; //para usar bd de rian
         $host = 'localhost';
         $db = 'umss';
         $user = 'postgres';
@@ -30,3 +33,8 @@ class Conexion {
         return $this->connexion_bd;
     }
 }
+
+//pg_hba.conf
+//al ultimo
+// host 	all 		all 		192.168.1.10/32 	md5
+// host 	all 		all 		192.168.1.12/32 	md5

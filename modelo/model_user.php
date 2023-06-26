@@ -98,4 +98,13 @@ class User extends Conexion {
         $stmt->bindParam(':texto_contenido', $texto_contenido);
         return $stmt->execute();
     }
+
+    public function contarContenido() {
+        $sql = "SELECT COUNT(*) FROM contenido";
+        $stmt = $this->connexion_bd->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        $stmt->closeCursor();
+        return $count;
+    }
 }
