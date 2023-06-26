@@ -28,7 +28,8 @@
                 </div>
                 <!-- boton verde -->
                 <div class="text-center mt-3">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addNewModal">+</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#agregarNuevoModal">+</button>
                 </div>
             </div>
             <div class="mt-2">
@@ -42,7 +43,8 @@
     </div>
 
     <!-- modal para agregar nuevo contenido. -->
-    <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+    <div class="modal fade" id="agregarNuevoModal" tabindex="-1" role="dialog" aria-labelledby="addNewLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -52,10 +54,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="addContentForm">
+                    <form id="agregarFormContenido">
                         <div class="form-group">
                             <label for="texto_contenido">Contenido Para Publicar</label>
-                            <input type="text" class="form-control" id="texto_contenido" name="texto_contenido" required>
+                            <input type="text" class="form-control" id="texto_contenido" name="texto_contenido"
+                                required>
                         </div>
                         <button type="submit" class="btn btn-primary">Publicar</button>
                     </form>
@@ -72,23 +75,23 @@
 
 </body>
 <style>
-    .custom-header {
-        font-size: 25px;
-        font-weight: bold;
-    }
+.custom-header {
+    font-size: 25px;
+    font-weight: bold;
+}
 
-    .custom-comment {
-        font-size: 20px;
-    }
+.custom-comment {
+    font-size: 20px;
+}
 
-    .card {
-        margin-bottom: 20px;
-    }
+.card {
+    margin-bottom: 20px;
+}
 
-    .count-style {
-        font-size: 25px;
-        font-weight: bold;
-    }
+.count-style {
+    font-size: 25px;
+    font-weight: bold;
+}
 </style>
 
 </html>

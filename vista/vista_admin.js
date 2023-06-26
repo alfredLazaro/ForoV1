@@ -4,8 +4,10 @@ function actContenidoYCont() {
         var contenidos = response.comentarios;
         var count = response.count;
 
+        // mostrar contador
         $('#count').text("Contenido Total: " + count);
 
+        // mostrar contenido
         $('.contenido-dinamico').empty();
         contenidos.forEach(function (contenido, index) {
             var contenidoHTML = `<div class="col-md-6 offset-md-3"><div class="card bg-success text-white">
@@ -24,6 +26,7 @@ function actContenidoYCont() {
                 contenidoHTML);
         });
 
+        //eliminar contenido y actualizar contador
         $('.eleminar-contenido').on('click', function () {
             var commentId = $(this).data('id');
             var parentCard = $(this).closest('.card');
@@ -52,11 +55,11 @@ function actContenidoYCont() {
 
 actContenidoYCont();
 
-setInterval(actContenidoYCont, 10000); // 10 segundos
+setInterval(actContenidoYCont, 10000); // 10000 = 10 segundos //para db
 
-
+//agregar contenido
 $(document).ready(function () {
-    $("#addContentForm").submit(function (e) {
+    $("#agregarFormContenido").submit(function (e) {
         e.preventDefault();
         var texto_contenido = $("#texto_contenido").val();
 
@@ -69,7 +72,7 @@ $(document).ready(function () {
             success: function (data) {
                 actContenidoYCont();
                 $('#texto_contenido').val("");
-                $('#addNewModal').modal('hide');
+                $('#agregarNuevoModal').modal('hide');
             },
             error: function () {
                 alert('Fracaso agregar contenido nuevo.');
