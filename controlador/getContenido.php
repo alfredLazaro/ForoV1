@@ -4,7 +4,7 @@ include_once "../modelo/model_user.php";
 
 $user = new User();
 
-$comentarios = $user->obtenerComentarios();
+$comentarios = $user->obtenerContenido();
 $contarContenido = $user->contarContenido();
 
 $response = array(

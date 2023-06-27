@@ -12,11 +12,11 @@ if (isset($_POST['id'])) {
     error_log(print_r($_POST, true));
 
     if ($result) {
-        echo json_encode(['success' => true, 'message' => 'Comment deleted ']);
+        echo json_encode(['success' => true, 'message' => 'Contenido eliminado ']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to delete comment']);
+        echo json_encode(['success' => false, 'message' => 'No se elimino contenido']);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'No ID provided']);
+    echo json_encode(['success' => false, 'message' => 'No existe ID']);
 }
 exit();
