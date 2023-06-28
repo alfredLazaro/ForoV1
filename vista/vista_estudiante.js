@@ -11,9 +11,10 @@ function actContenidoYCont() {
         // mostrar contenido con botones modificar-contenido y eleminar-contenido
         $('.contenido-dinamico').empty();
         contenidos.forEach(function (contenido, index) {
+            //console.log(contenido);
             var contenidoHTML = `<div class="col-md-6 offset-md-3"><div class="card bg-success text-white">
                 <div class="card-header d-flex justify-content-between">
-                    <span class="custom-header">Contenido ${index + 1} </span>
+                    <span class="custom-header">${contenido.isAdmin ? 'Anuncio' : 'Contenido'} ${index + 1}</span>
                     <div class="button-container">
                         <button class="modificar-contenido btn btn-warning" data-id="${contenido.id_contenido}">Modificar</button>
                         <button class="eleminar-contenido btn btn-danger" data-id="${contenido.id_contenido}">X</button>
@@ -23,7 +24,7 @@ function actContenidoYCont() {
                     <p class="custom-comment" id="comment${index + 1}">
                         ${contenido.texto_contenido}
                     </p>
-                    <p class="student-id ml-auto small text-right">Codigo Sis: ${contenido.codigo_sis}</p>
+                    <p class="student-id ml-auto small text-right">${contenido.isAdmin ? 'Admin' : 'Codigo Sis: ' + contenido.codigo_sis}</p>
                 </div>
                 </div></div>`;
 
