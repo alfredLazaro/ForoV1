@@ -24,7 +24,7 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
     }
 }
 
-$comentarios = $user->obtenerComentarios();
+$comentarios = $user->obtenerContenido();
 $_SESSION['comentarios'] = $comentarios;
 
 if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {

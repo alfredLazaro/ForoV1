@@ -9,7 +9,7 @@
 
 <body>
     <div class="container mt-5">
-        <div class="row">
+        <div class="row justify-content-between align-items-center">
             <div class="col-md-6 offset-md-3">
                 <div class="card bg-primary text-white">
                     <div class="card-header">
@@ -29,18 +29,21 @@
                 <!-- boton verde -->
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#addNewModal">+</button>
+                        data-target="#agregarNuevoModal">+</button>
                 </div>
+            </div>
+            <div class="mt-2">
+                <span id="count" class="ml-2 count-style"></span>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5 comment-container">
+    <div class="row mt-5 contenido-dinamico">
         <!-- Contenido dinamico -->
     </div>
 
     <!-- modal para agregar nuevo contenido. -->
-    <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewLabel"
+    <div class="modal fade" id="agregarNuevoModal" tabindex="-1" role="dialog" aria-labelledby="addNewLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -51,7 +54,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="addContentForm">
+                    <form id="agregarFormContenido">
                         <div class="form-group">
                             <label for="texto_contenido">Contenido Para Publicar</label>
                             <input type="text" class="form-control" id="texto_contenido" name="texto_contenido"
@@ -64,97 +67,39 @@
         </div>
     </div>
 
+    <!-- modal para modificar contenido -->
+    <div class="modal fade" id="modificarModal" tabindex="-1" role="dialog" aria-labelledby="modifyLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifyLabel">Modificar Contenido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modificarFormContenido">
+                        <div class="form-group">
+                            <label for="texto_modificar">Contenido Para Modificar</label>
+                            <input type="text" class="form-control" id="texto_modificar" name="texto_modificar"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Modificar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script>
-    setInterval(function() {
-        $.get("../controlador/getContenido.php", function(data) {
-            var contenidos = JSON.parse(data);
-            $('.comment-container').empty();
-            contenidos.forEach(function(contenido, index) {
-                var contenidoHTML = `<div class="col-md-6 offset-md-3"><div class="card bg-success text-white">
-                        <div class="card-header d-flex justify-content-between">
-                            <span class="custom-header">Contenido ${index + 1} </span>
-                            <button class="modificar-contenido btn btn-primary" data-id="${contenido.id_contenido}">Modificar contenido</button>
-                            <button class="eleminar-contenido btn btn-danger" data-id="${contenido.id_contenido}">X</button>
-                        </div>
-                        <div class="card-body bg-light text-dark">
-                            <p class="custom-comment" id="comment${index + 1}">
-                                ${contenido.texto_contenido}
-                            </p>
-                            <p class="student-id ml-auto small text-right">Codigo Sis: ${contenido.codigo_sis}</p>
-                        </div>
-                    </div></div>`;
-                $('.comment-container').append(
-                    contenidoHTML);
-            });
+    <script src="../vista/vista_admin.js"></script>
 
-            $('.eleminar-contenido').on('click', function() {
-                var commentId = $(this).data('id');
-                var parentCard = $(this).closest('.card');
-
-                console.log(commentId);
-
-                $.ajax({
-                    url: '../controlador/eliminarContenido.php',
-                    method: 'POST',
-                    data: {
-                        id: commentId
-                    },
-                    success: function(response) {
-                        var parsedResponse = JSON.parse(response);
-                        if (parsedResponse.success) {
-                            // alert('Se elimino el contenido');
-                            parentCard.remove();
-                        } else {
-                            alert('Error en la eliminacion de contenido.');
-                        }
-                    }
-                });
-            });
-        });
-    }, 1000); // 2000 = 2 segs
-    </script>
-
-    <!-- manejar el envío de formularios -->
-    <script>
-    $(document).ready(function() {
-        $("#addContentForm").submit(function(e) {
-            e.preventDefault();
-            var texto_contenido = $("#texto_contenido").val();
-
-            $.ajax({
-                type: "POST",
-                url: "../controlador/agregarContenido.php",
-                data: {
-                    texto_contenido: texto_contenido
-                },
-                success: function(data) {
-                    location.reload();
-                },
-                error: function() {
-                    alert('Fracaso agregar contenido nuevo.');
-                }
-            });
-        });
-    });
-    </script>
+    <link rel="stylesheet" type="text/css" href="../vista/vista_admin.css">
 
 </body>
-<style>
-.custom-header {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.custom-comment {
-    font-size: 20px;
-}
-
-.card {
-    margin-bottom: 20px;
-}
-</style>
 
 </html>

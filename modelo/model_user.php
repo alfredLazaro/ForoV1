@@ -52,7 +52,7 @@ class User extends Conexion {
         $sentenceSQL->closeCursor();
     }
 
-    // public function obtenerComentarios() {
+    // public function obtenerContenido() {
     //     $sql = "SELECT id_contenido, texto_contenido FROM contenido ORDER BY id_contenido";
     //     $sentenceSQL = $this->connexion_bd->prepare($sql);
     //     $sentenceSQL->execute();
@@ -61,7 +61,7 @@ class User extends Conexion {
     //     return $respuesta;
     // }
 
-    // public function obtenerComentarios() {
+    // public function obtenerContenido() {
     //     $sql = "SELECT contenido.id_contenido, contenido.texto_contenido, estudiantes.codigo_sis 
     //             FROM contenido 
     //             INNER JOIN estudiantes ON estudiantes.codigo_sis = contenido.codigo_sis
@@ -73,7 +73,7 @@ class User extends Conexion {
     //     return $respuesta;
     // }
 
-    public function obtenerComentarios() {
+    public function obtenerContenido() {
         $sql = "SELECT id_contenido, texto_contenido, codigo_sis FROM contenido ORDER BY id_contenido";
         $sentenceSQL = $this->connexion_bd->prepare($sql);
         $sentenceSQL->execute();
@@ -97,5 +97,24 @@ class User extends Conexion {
         $stmt = $this->connexion_bd->prepare($sql);
         $stmt->bindParam(':texto_contenido', $texto_contenido);
         return $stmt->execute();
+    }
+
+    public function contarContenido() {
+        $sql = "SELECT COUNT(*) FROM contenido";
+        $stmt = $this->connexion_bd->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        $stmt->closeCursor();
+        return $count;
+    }
+
+    public function modificarContenido($id, $nuevoTexto) {
+        $sql = "UPDATE contenido SET texto_contenido = :nuevoTexto WHERE id_contenido = :id";
+        $sentenceSQL = $this->connexion_bd->prepare($sql);
+        $sentenceSQL->bindParam(':nuevoTexto', $nuevoTexto, PDO::PARAM_STR);
+        $sentenceSQL->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $sentenceSQL->execute();
+        $sentenceSQL->closeCursor();
+        return $result;
     }
 }
