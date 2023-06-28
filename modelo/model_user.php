@@ -117,4 +117,12 @@ class User extends Conexion {
         $sentenceSQL->closeCursor();
         return $result;
     }
+
+    public function agregarContenidoEstudiante($texto_contenido, $codigo_sis) {
+        $sql = "INSERT INTO contenido (codigo_sis, texto_contenido) VALUES (:codigo_sis, :texto_contenido)";
+        $stmt = $this->connexion_bd->prepare($sql);
+        $stmt->bindParam(':texto_contenido', $texto_contenido);
+        $stmt->bindParam(':codigo_sis', $codigo_sis);
+        return $stmt->execute();
+    }
 }

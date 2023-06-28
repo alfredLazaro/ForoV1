@@ -9,15 +9,12 @@
 
 <body>
     <div class="container mt-5">
-        <div class="row">
+        <div class="row justify-content-between align-items-center">
             <div class="col-md-6 offset-md-3">
-                <!-- <div class="card"> -->
                 <div class="card bg-primary text-white">
                     <div class="card-header">
-                        <!-- <strong style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Usuario</strong> -->
                         <span class="custom-header">Usuario: Estudiante</span>
                     </div>
-                    <!-- <div class="card-body"> -->
                     <div class="card-body bg-light text-dark">
                         <?php
                         session_start();
@@ -25,89 +22,85 @@
                             echo "<p><strong>Nombre: </strong>" . $_SESSION['nombreUsuario'] . "</p>";
                             echo "<p><strong>Codigo SIS: </strong>" . $_SESSION['codigo_sis'] . "</p>";
                         } else {
-                            echo "<p>No user information found. Please log in.</p>";
+                            echo "<p>Inicia session.</p>";
                         }
                         ?>
                     </div>
                 </div>
-                <!-- boton verde sin funcionalidad-->
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#addNewModal">+</button>
+                        data-target="#agregarNuevoModal">Agregar Contenido</button>
+                </div>
+            </div>
+            <div class="mt-2">
+                <span id="count" class="ml-2 count-style"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 contenido-dinamico">
+        <!-- Contenido dinamico -->
+    </div>
+
+    <!-- modal para agregar nuevo contenido. -->
+    <div class="modal fade" id="agregarNuevoModal" tabindex="-1" role="dialog" aria-labelledby="addNewLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewLabel">Agregar Contenido Nuevo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="agregarFormContenido">
+                        <div class="form-group">
+                            <label for="texto_contenido">Contenido Para Publicar</label>
+                            <input type="text" class="form-control" id="texto_contenido" name="texto_contenido"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Publicar</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- dinamica -->
-    <div class="row mt-5">
-        <div class="col-md-6 offset-md-3">
-            <!-- <div class="card"> -->
-            <div class="card bg-success text-white">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span class="custom-header">Primer Contenido</span>
-                    <!-- boton eliminar sin funcionalidad -->
-                    <button class="eleminar-contenido btn btn-danger ml-auto">X</button>
+    <!-- modal para modificar contenido -->
+    <div class="modal fade" id="modificarModal" tabindex="-1" role="dialog" aria-labelledby="modifyLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifyLabel">Modificar Contenido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <!-- <div class="card-body"> -->
-                <div class="card-body bg-light text-dark">
-                    <p class="custom-comment" id="firstComment"><?php echo $_SESSION['primerComentario']; ?></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-md-6 offset-md-3">
-            <!-- <div class="card"> -->
-            <div class="card bg-success text-white">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <!-- <strong style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Segundo Comentario</strong> -->
-                    <span class="custom-header">Segundo Contenido</span>
-                    <!-- boton eliminar sin funcionalidad -->
-                    <button class="eleminar-contenido btn btn-danger ml-auto">X</button>
-                </div>
-                <!-- <div class="card-body"> -->
-                <div class="card-body bg-light text-dark">
-                    <p class="custom-comment" id="secondComment">
-                        <?php echo isset($_SESSION['segundoComentario']) ? $_SESSION['segundoComentario'] : "No second comment found."; ?>
-                    </p>
+                <div class="modal-body">
+                    <form id="modificarFormContenido">
+                        <div class="form-group">
+                            <label for="modificar_texto">Modificar Contenido</label>
+                            <input type="text" class="form-control" id="modificar_texto" name="modificar_texto"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Modificar</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-    setInterval(function() {
 
-        $.get("../controlador/verificarUsuario.php", function(data) {
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="vista_estudiante.js"></script>
 
-            //$('#firstComment').text(data);
-            var comments = JSON.parse(data);
-
-            $('#firstComment').text(comments.primerComentario);
-            $('#secondComment').text(comments.segundoComentario);
-        });
-    }, 2000); // 2000 = 2 segs
-    //}, 30000);// 30000 = 30 segs
-    </script>
+    <link rel="stylesheet" type="text/css" href="../vista/vista_estudiante.css">
 
 </body>
-<style>
-.custom-header {
-    font-size: 25px;
-    font-weight: bold;
-    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-    /* text-shadow: 
-            -1.0px -1.0px 0 #000,  
-            1.0px -1.0px 0 #000,
-            -1.0px 1.0px 0 #000,
-            1.0px 1.0px 0 #000; */
-}
 
-.custom-comment {
-    font-size: 20px;
-}
-</style>
+
 
 </html>

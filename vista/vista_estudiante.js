@@ -71,7 +71,8 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "../controlador/agregarContenido.php",
+            // url: "../controlador/agregarContenido.php",
+            url: "../controlador/agregarContenidoEstudiante.php",
             data: {
                 texto_contenido: texto_contenido
             },
@@ -95,12 +96,12 @@ $(document).ready(function () {
         var texto = $(this).closest('.card').find('.custom-comment').text();
 
         // $('#texto_modificar').val(texto);
-        $('#texto_modificar').val(texto.trim());
+        $('#modificar_texto').val(texto.trim());
         $('#modificarModal').modal('show');
 
         $('#modificarFormContenido').off('submit').on('submit', function (e) {
             e.preventDefault();
-            var nuevoTexto = $('#texto_modificar').val();
+            var nuevoTexto = $('#modificar_texto').val();
 
             $.ajax({
                 type: "POST",
@@ -111,7 +112,7 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     actContenidoYCont();
-                    $('#texto_modificar').val("");
+                    $('#modificar_texto').val("");
                     $('#modificarModal').modal('hide');
                 },
                 error: function () {
