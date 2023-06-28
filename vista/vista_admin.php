@@ -13,7 +13,7 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card bg-primary text-white">
                     <div class="card-header">
-                        <span class="custom-header">Usuario</span>
+                        <span class="custom-header">Usuario: Administrador</span>
                     </div>
                     <div class="card-body bg-light text-dark">
                         <?php
@@ -29,7 +29,7 @@
                 <!-- boton verde -->
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#agregarNuevoModal">+</button>
+                        data-target="#agregarNuevoModal">Agregar Contenido</button>
                 </div>
             </div>
             <div class="mt-2">
