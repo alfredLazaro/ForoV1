@@ -16,8 +16,6 @@ function actContenidoYCont() {
                 <div class="card-header d-flex justify-content-between">
                     <span class="custom-header">${contenido.isAdmin ? 'Anuncio' : 'Contenido'} ${index + 1}</span>
                     <div class="button-container">
-                        <button class="modificar-contenido btn btn-warning" data-id="${contenido.id_contenido}">Modificar</button>
-                        <button class="eleminar-contenido btn btn-danger" data-id="${contenido.id_contenido}">X</button>
                     </div>
                 </div>
                 <div class="card-body bg-light text-dark">
@@ -36,12 +34,15 @@ function actContenidoYCont() {
         $('.eleminar-contenido').on('click', function () {
             var commentId = $(this).data('id');
             var parentCard = $(this).closest('.card');
+            // var codigo_sis = '<?php echo $_SESSION["codigo_sis"]; ?>';
 
             $.ajax({
+                // url: '../controlador/eliminarContenido.php',
                 url: '../controlador/eliminarContenido.php',
                 method: 'POST',
                 data: {
                     id: commentId
+                    // codigo_sis: codigo_sis
                 },
                 success: function (response) {
                     var parsedResponse = JSON.parse(response);
@@ -89,37 +90,37 @@ $(document).ready(function () {
     });
 });
 
-//modificar contenido
-$(document).ready(function () {
-    //$('.modificar-contenido').on('click', function () {
-    $('.contenido-dinamico').on('click', '.modificar-contenido', function () {
-        var idContenid = $(this).data('id');
-        var texto = $(this).closest('.card').find('.custom-comment').text();
+// //modificar contenido
+// $(document).ready(function () {
+//     //$('.modificar-contenido').on('click', function () {
+//     $('.contenido-dinamico').on('click', '.modificar-contenido', function () {
+//         var idContenid = $(this).data('id');
+//         var texto = $(this).closest('.card').find('.custom-comment').text();
 
-        // $('#texto_modificar').val(texto);
-        $('#modificar_texto').val(texto.trim());
-        $('#modificarModal').modal('show');
+//         // $('#texto_modificar').val(texto);
+//         $('#modificar_texto').val(texto.trim());
+//         $('#modificarModal').modal('show');
 
-        $('#modificarFormContenido').off('submit').on('submit', function (e) {
-            e.preventDefault();
-            var nuevoTexto = $('#modificar_texto').val();
+//         $('#modificarFormContenido').off('submit').on('submit', function (e) {
+//             e.preventDefault();
+//             var nuevoTexto = $('#modificar_texto').val();
 
-            $.ajax({
-                type: "POST",
-                url: "../controlador/modificarContenido.php",
-                data: {
-                    id: idContenid,
-                    texto_contenido: nuevoTexto
-                },
-                success: function (data) {
-                    actContenidoYCont();
-                    $('#modificar_texto').val("");
-                    $('#modificarModal').modal('hide');
-                },
-                error: function () {
-                    alert('Fracaso al modificar contenido.');
-                }
-            });
-        });
-    });
-});
+//             $.ajax({
+//                 type: "POST",
+//                 url: "../controlador/modificarContenido.php",
+//                 data: {
+//                     id: idContenid,
+//                     texto_contenido: nuevoTexto
+//                 },
+//                 success: function (data) {
+//                     actContenidoYCont();
+//                     $('#modificar_texto').val("");
+//                     $('#modificarModal').modal('hide');
+//                 },
+//                 error: function () {
+//                     alert('Fracaso al modificar contenido.');
+//                 }
+//             });
+//         });
+//     });
+// });

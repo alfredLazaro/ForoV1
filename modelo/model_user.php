@@ -125,4 +125,12 @@ class User extends Conexion {
         $stmt->bindParam(':codigo_sis', $codigo_sis);
         return $stmt->execute();
     }
+
+    public function eliminarContenidoEstudiante($id, $codigo_sis) {
+        $sql = "DELETE FROM contenido WHERE id_contenido = :id AND codigo_sis = :codigo_sis";
+        $stmt = $this->connexion_bd->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':codigo_sis', $codigo_sis);
+        return $stmt->execute();
+    }
 }
