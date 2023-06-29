@@ -61,11 +61,28 @@ function actContenidoYCont() {
 
 actContenidoYCont();
 
+// $.get("../controlador/getUsuario.php", function (data) {
+//     console.log(data);
+//     if (data.nombreUsuario) {
+//         $('#user-info').html(`<p><strong>Nombre: </strong>${data.nombreUsuario}</p>`);
+//     } else {
+//         $('#user-info').html('<p>Inicia session.</p>');
+//     }
+// });
+
 //se puede mofificar para actualizar cada n segundos
 setInterval(actContenidoYCont, 7000); // 10000 = 10 segundos //para db
 
 //agregar contenido
 $(document).ready(function () {
+    $.get("../controlador/getUsuarioAdmin.php", function (data) {
+        if (data.nombreUsuario) {
+            $('#usuarioNombre').text('Nombre: ' + data.nombreUsuario);
+        } else {
+            $('#usuarioNombre').text('Inicia session.');
+        }
+    });
+
     $("#agregarFormContenido").submit(function (e) {
         e.preventDefault();
         var texto_contenido = $("#texto_contenido").val();

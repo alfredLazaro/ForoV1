@@ -13,8 +13,8 @@ class Conexion {
         //$pass = '1234';
 
         //para usar bd de alfredo
-        //$host = '192.168.1.10'; 
-        //$pass = '12345678';
+        // $host = '192.168.1.10';
+        // $pass = '12345678';
 
         //para usar bd de rian
         //$host = '192.168.1.12'; 

@@ -11,14 +11,16 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         if ($respuesta) {
             $_SESSION['nombreUsuario'] = $respuesta['nombre'];
             $_SESSION['codigo_sis'] = $respuesta['codigo_sis'];
-            header("Location: ../vista/vista_estudiante.php");
+            // header("Location: ../vista/vista_estudiante.php");
+            header("Location: ../vista/vista_estudiante.html");
             exit();
         }
     } else {
         $respuesta = $user->obtenerAdmin($_POST['user'], $_POST['pass']);
         if ($respuesta) {
             $_SESSION['nombreUsuario'] = $respuesta['nombre'];
-            header("Location: ../vista/vista_admin.php");
+            // header("Location: ../vista/vista_admin.php");
+            header("Location: ../vista/vista_admin.html");
             exit();
         }
     }

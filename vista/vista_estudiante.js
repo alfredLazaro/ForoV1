@@ -67,6 +67,15 @@ setInterval(actContenidoYCont, 7000); // 10000 = 10 segundos //para db
 
 //agregar contenido
 $(document).ready(function () {
+    $.get("../controlador/getUsuario.php", function (data) {
+        if (data.nombreUsuario && data.codigo_sis) {
+            $('#usuarioNombre').text('Nombre: ' + data.nombreUsuario);
+            $('#codigoSIS').text('Codigo SIS: ' + data.codigo_sis);
+        } else {
+            $('#usuarioNombre').text('Inicia session.');
+        }
+    });
+
     $("#agregarFormContenido").submit(function (e) {
         e.preventDefault();
         var texto_contenido = $("#texto_contenido").val();
